@@ -469,7 +469,8 @@ class Btree : public Index<K, V, size>
 	V get(K key, double latency_breaks[3])
 	{
 		std::pair<leaf_node_t *, inner_node_t *> p;
-		V res(-1);
+		//V res(-1);
+        V res;
 
 		#ifdef PERF_LATENCY
 		cpuCycleTimer t1, t2;
@@ -517,6 +518,40 @@ class Btree : public Index<K, V, size>
 			return res;
 		}
 	}
+
+    // Adding support for the sharded Scans used in KVell
+    void find_n(K key, size_t n, void *hashes, int sizeofHashes, void *entries, int sizeOfEntries, size_t *nb_entries){
+
+//        std::pair<leaf_node_t *, inner_node_t *> p;
+//
+//        speculative_lock_t::scoped_lock lock;
+//        lock.acquire(mtx, false);
+//
+//        // Get the closest leaf node
+//        p = find_leaf(key);
+//
+//        if (p.first->lock)
+//            lock.release();
+//
+//
+//        // Get the hashes and entries for the following n items
+//        int i = 0;
+//        while(i < size && (*nb_entries) < n) {
+//
+//            *(hashes + i*sizeofHashes) = p.first;
+//            *(entries + i*sizeOfEntries) = p.second;
+//
+//            // Getting the next leaf node
+//            p = p.first->next;
+//
+//            (*nb_entries)++;
+//            i++;
+//        }
+//
+//        lock.release();
+        return;
+
+    }
 
 	// 0: insert,  1:  update,  2: remove
 	bool modify(K key, V value, int modify_type, double latency_breaks[3])
@@ -658,7 +693,9 @@ class Btree : public Index<K, V, size>
 	bool remove(K key)
 	{
 		double a[3];
-		return modify(key, V(-1), 2, a);
+        V v;
+		return modify(key, v, 2, a);
+        //return modify(key, V(-1), 2, a);
 	}
 
 

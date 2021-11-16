@@ -46,7 +46,7 @@ class NVMMgr{
     static const long long filesize = 8ll * 1024 * 1024 * PGSIZE; //32GB
 
     static const char* get_filename(){
-        static const std::string filename = "/mnt/dax/nvindex/core.data";
+        static const std::string filename = "/optane-data/hperez6/core.data";
         return filename.c_str();
     }
     int fd;
