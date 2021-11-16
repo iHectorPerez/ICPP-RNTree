@@ -522,33 +522,33 @@ class Btree : public Index<K, V, size>
     // Adding support for the sharded Scans used in KVell
     void find_n(K key, size_t n, void *hashes, int sizeofHashes, void *entries, int sizeOfEntries, size_t *nb_entries){
 
-//        std::pair<leaf_node_t *, inner_node_t *> p;
+//       std::pair<leaf_node_t *, inner_node_t *> p;
 //
-//        speculative_lock_t::scoped_lock lock;
-//        lock.acquire(mtx, false);
+//       speculative_lock_t::scoped_lock lock;
+//       lock.acquire(mtx, false);
 //
-//        // Get the closest leaf node
-//        p = find_leaf(key);
+//       // Get the closest leaf node
+//       p = find_leaf(key);
 //
-//        if (p.first->lock)
-//            lock.release();
+//       if (p.first->lock)
+//           lock.release();
 //
 //
-//        // Get the hashes and entries for the following n items
-//        int i = 0;
-//        while(i < size && (*nb_entries) < n) {
+//       // Get the hashes and entries for the following n items
+//       int i = 0;
+//       while(i < size && (*nb_entries) < n) {
 //
-//            *(hashes + i*sizeofHashes) = p.first;
-//            *(entries + i*sizeOfEntries) = p.second;
+//           *(hashes + i*sizeofHashes) = p.first;
+//           *(entries + i*sizeOfEntries) = p.second;
 //
-//            // Getting the next leaf node
-//            p = p.first->next;
+//           // Getting the next leaf node
+//           p = p.first->next;
 //
-//            (*nb_entries)++;
-//            i++;
-//        }
+//           (*nb_entries)++;
+//           i++;
+//       }
 //
-//        lock.release();
+//       lock.release();
         return;
 
     }
